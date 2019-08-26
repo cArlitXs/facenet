@@ -1,6 +1,6 @@
 package es.eoi.redsocial.enums;
 
-public enum EventsEnum {
+public enum StateAssist {
 	CONFIRMED,
 	DENIED,
 	PENDING;

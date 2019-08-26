@@ -1,6 +1,6 @@
 package es.eoi.redsocial.enums;
 
-public enum ReactionTypeEnum {
+public enum ReactionTypeReaction {
 	LIKE, 
 	HATE, 
 	LOVE;

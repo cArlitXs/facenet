@@ -1,12 +1,15 @@
 package es.eoi.redsocial.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -40,6 +43,24 @@ public class User {
 
 	@Column(name = "pass")
 	private String pass;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private List<Event> events;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private List<Message> mesagges;
+	
+	@OneToMany(mappedBy = "userAssistance")
+    private List<Assistance> assistance;
+	
+	@OneToMany(mappedBy = "messageReaction")
+    private List<Reaction> reaction;
+	
+	@OneToMany(mappedBy = "originUser")
+    private List<Relationship> originsUsers;
+	
+	@OneToMany(mappedBy = "idUserFriend")
+    private List<Relationship> targetUsers;
 
 	public User() {
 	}
