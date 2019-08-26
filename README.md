@@ -12,4 +12,5 @@ Facenet APP
 ### Dia 1
 * Crear proyecto (Carlos)
 * Crear estructura (Carlos)
+* Aplication.properties (Javier)
 * 
