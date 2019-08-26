@@ -1,12 +1,12 @@
 package es.eoi.redsocial.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.eoi.redsocial.entity.User;
+import es.eoi.redsocial.enums.StateRelationship;
 import es.eoi.redsocial.repository.UserRepository;
 
 @Service
@@ -56,16 +56,25 @@ public class UserServiceImpl implements UserService {
 		List<User> userList = null;
 		
 		for (User user : this.userRepository.findAll()) {
-			if(user)
+			StateRelationship stateRelationship = null;
+			if(user.getOriginsUsers().equals(stateRelationship.FRIEND))
+				userList.add(user);
 		}
 		
-		return null;
+		return userList;
 	}
 
 	@Override
 	public List<User> pendingRelationship() {
-		// TODO Auto-generated method stub
-		return null;
+		List<User> userList = null;
+		StateRelationship stateRelationship = null;
+		
+		for (User user : this.userRepository.findAll()) {
+			if(user.getOriginsUsers().equals(stateRelationship.PENDING))
+				userList.add(user);
+		}
+		
+		return userList;
 	}
 
 	@Override
