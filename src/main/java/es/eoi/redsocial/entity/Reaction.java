@@ -26,6 +26,9 @@ public class Reaction {
 	@Column(name = "id")
 	private int id;
 	
+	@Column(name = "idUser")
+	private int idUser;
+	
 	@ManyToOne
 	@JoinColumn(name = "idUser")
 	private User userReaction;

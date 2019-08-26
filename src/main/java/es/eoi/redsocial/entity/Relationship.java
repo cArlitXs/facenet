@@ -29,6 +29,9 @@ public class Relationship {
 	@ManyToOne
 	@JoinColumn(name = "idUser")
 	private User originUser;
+
+	@Column(name = "idUser")
+	private int idUser;
 	
 	@Column(name = "idUserFriend")
 	private User targetUser;

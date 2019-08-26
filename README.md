@@ -13,4 +13,7 @@ Facenet APP
 * Crear proyecto (Carlos)
 * Crear estructura (Carlos)
 * Aplication.properties (Javier)
-* 
+* Crear controladores - estructure(Kike)
+* Crear servicios - estructure (Kike)
+* Crear enums (Kike)
+* Relaciones entre entidades (Javier)
