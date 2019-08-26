@@ -1,6 +1,6 @@
 package es.eoi.redsocial.enums;
 
-public enum RelationShipEnum {
+public enum StateRelationship {
 	FRIEND,
 	PENDING;
 }

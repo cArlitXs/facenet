@@ -2,11 +2,16 @@ package es.eoi.redsocial.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import es.eoi.redsocial.enums.ReactionTypeReaction;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,9 +29,17 @@ public class Reaction {
 	@Column(name = "idUser")
 	private int idUser;
 	
-	@Column(name = "idMessages")
-	private int idMessages;
+	@ManyToOne
+	@JoinColumn(name = "idUser")
+	private User userReaction;
+	
+	@ManyToOne
+	@JoinColumn(name = "idMessages")
+	private Message messageReaction;
 
-//	FALTA ReactionType
+	@Column(name = "state")
+	@Enumerated(EnumType.STRING)
+	private ReactionTypeReaction state;
+	
 
 }

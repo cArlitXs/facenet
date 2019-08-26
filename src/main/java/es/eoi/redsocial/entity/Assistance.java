@@ -2,11 +2,16 @@ package es.eoi.redsocial.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import es.eoi.redsocial.enums.StateAssist;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,9 +29,16 @@ public class Assistance {
 	@Column(name = "idUser")
 	private int idUser;
 	
-	@Column(name = "idEvent")
-	private int idEvent;
+	@ManyToOne
+    @JoinColumn(name = "idUser")
+	private User userAssistance;
 	
-//	FALTA AssistState
+	@ManyToOne
+	@JoinColumn(name = "idEvent")
+	private Event eventAssistance;
+	
+	@Column(name = "state")
+	@Enumerated(EnumType.STRING)
+	private StateAssist state;
 
 }
