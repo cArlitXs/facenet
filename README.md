@@ -16,4 +16,5 @@ Facenet APP
 * Crear controladores - estructure(Kike)
 * Crear servicios - estructure (Kike)
 * Crear enums (Kike)
+* Crud de las entidades (Carlos, Kike)
 * Relaciones entre entidades (Javier)
