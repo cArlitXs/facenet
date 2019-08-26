@@ -38,7 +38,7 @@ public class Event {
 	private Date eventdate;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ID", referencedColumnName = "ID")
+	@JoinColumn(name = "idUsuario", referencedColumnName = "ID")
 	private User user;
 	
 	@OneToMany(mappedBy = "eventAssistance")

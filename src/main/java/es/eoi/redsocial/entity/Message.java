@@ -35,7 +35,7 @@ public class Message {
 	private Date publishdate;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ID", referencedColumnName = "ID")
+	@JoinColumn(name = "idUsuario", referencedColumnName = "ID")
 	private User user;
 	
 	@OneToMany(mappedBy = "messageReaction")

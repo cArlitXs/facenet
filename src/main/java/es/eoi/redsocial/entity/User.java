@@ -59,7 +59,7 @@ public class User {
 	@OneToMany(mappedBy = "originUser")
     private List<Relationship> originsUsers;
 	
-	@OneToMany(mappedBy = "idUserFriend")
+	@OneToMany(mappedBy = "targetUser")
     private List<Relationship> targetUsers;
 
 	public User() {
