@@ -1,6 +1,8 @@
 # facenet
 Facenet APP
 
-Carlos Alvarez L.
-Enrique Gonzalez
-Javier Sirvent
+## Grupo5
+ 
+⋅⋅* Carlos Alvarez L.
+⋅⋅* Enrique Gonzalez
+⋅⋅* Javier Sirvent
