@@ -100,6 +100,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	
 	public boolean relationship(Relationship relationship) {
 		try {
 			relationship.setState(StateRelationship.FRIEND);
