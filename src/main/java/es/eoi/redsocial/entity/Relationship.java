@@ -38,4 +38,13 @@ public class Relationship {
 	@Enumerated(EnumType.STRING)
 	private StateRelationship state;
 
+	public Relationship() {
+	}
+
+	public Relationship(User originUser, User targetUser, StateRelationship state) {
+		this.originUser = originUser;
+		this.targetUser = targetUser;
+		this.state = state;
+	}
+
 }

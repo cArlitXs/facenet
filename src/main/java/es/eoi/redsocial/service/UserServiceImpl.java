@@ -1,12 +1,15 @@
 package es.eoi.redsocial.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import es.eoi.redsocial.entity.Relationship;
 import es.eoi.redsocial.entity.User;
 import es.eoi.redsocial.enums.StateRelationship;
+import es.eoi.redsocial.repository.RelationshipRepository;
 import es.eoi.redsocial.repository.UserRepository;
 
 @Service
@@ -14,6 +17,8 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	RelationshipRepository relationshipRepository;
 
 	@Override
 	public List<User> findAll() {
@@ -44,7 +49,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean login(User user) {
 		User userDB = this.userRepository.findById(user.getId()).get();
-		
+
 		if (userDB != null)
 			return true;
 		else
@@ -52,47 +57,70 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> friendsRelationship() {
-		List<User> userList = null;
+	public List<Relationship> friendsRelationship(User user) {
+		List<Relationship> relationshipList = new ArrayList<Relationship>();
 		
-		for (User user : this.userRepository.findAll()) {
-			StateRelationship stateRelationship = null;
-			if(user.getOriginsUsers().equals(stateRelationship.FRIEND))
-				userList.add(user);
+		List<Relationship> relationshipOrigin = user.getOriginsUsers();
+		
+		for (Relationship r : relationshipOrigin) {
+			if(r.getState().equals(StateRelationship.FRIEND)) {
+				relationshipList.add(r);
+			}
 		}
 		
-		return userList;
+		return relationshipList;
 	}
 
 	@Override
-	public List<User> pendingRelationship() {
-		List<User> userList = null;
-		StateRelationship stateRelationship = null;
+	public List<Relationship> pendingRelationship(User user) {
+		List<Relationship> relationshipList = new ArrayList<Relationship>();
 		
-		for (User user : this.userRepository.findAll()) {
-			if(user.getOriginsUsers().equals(stateRelationship.PENDING))
-				userList.add(user);
+		List<Relationship> relationshipOrigin = user.getOriginsUsers();
+		
+		for (Relationship r : relationshipOrigin) {
+			if(r.getState().equals(StateRelationship.PENDING)) {
+				relationshipList.add(r);
+			}
 		}
 		
-		return userList;
+		return relationshipList;
 	}
 
 	@Override
-	public boolean invitefriend(int id) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean invitefriend(User originUser, User targetUser) {
+		try {
+			Relationship relationship = new Relationship(originUser, targetUser, StateRelationship.PENDING);
+
+			relationshipRepository.save(relationship);
+
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	@Override
-	public boolean relationship() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean relationship(Relationship relationship) {
+		try {
+			relationship.setState(StateRelationship.FRIEND);
+
+			relationshipRepository.save(relationship);
+
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	@Override
-	public boolean deleteRelationship(int id) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deleteRelationship(Relationship relationship) {
+		try {
+			relationshipRepository.delete(relationship);
+
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 }

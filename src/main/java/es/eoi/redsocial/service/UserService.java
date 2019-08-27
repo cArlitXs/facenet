@@ -2,6 +2,7 @@ package es.eoi.redsocial.service;
 
 import java.util.List;
 
+import es.eoi.redsocial.entity.Relationship;
 import es.eoi.redsocial.entity.User;
 
 public interface UserService {
@@ -15,15 +16,15 @@ public interface UserService {
 	public boolean save(User user);
 
 	public boolean login(User user);
+
+	List<Relationship> friendsRelationship(User user);
 	
-	public List<User> friendsRelationship();
-	
-	public List<User> pendingRelationship();
-	
-	public boolean invitefriend(int id);
-	
-	public boolean relationship();
-	
-	public boolean deleteRelationship(int id);
+	public List<Relationship> pendingRelationship(User user);
+
+	boolean invitefriend(User userOrigen, User userDestino);
+
+	boolean relationship(Relationship relationship);
+
+	boolean deleteRelationship(Relationship relationship);
 
 }
