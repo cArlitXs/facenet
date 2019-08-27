@@ -48,7 +48,7 @@ public class User {
 	private List<Event> events;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private List<Message> mesagges;
+	private List<Message> message;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userAssistance")
     private List<Assistance> assistance;

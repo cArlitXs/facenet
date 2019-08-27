@@ -9,7 +9,7 @@ Facenet APP
 
 ## Tareas
 
-### Dia 1
+### Dia 1:
 * Crear proyecto (Carlos)
 * Crear estructura (Carlos)
 * Aplication.properties (Javier)
@@ -22,4 +22,10 @@ Facenet APP
 * Arreglado las entidades (Javier)
 * AssistanceService (Kike)
 
-### Dia 2
+### Dia 2:
+* UserServiceImpl (Kike, Carlos)
+* EventServiceImpl (Javier)
+* EventController (Javier)
+* Message (Carlos)
+* Cambiar todos los servicios (Kike)
+* 
