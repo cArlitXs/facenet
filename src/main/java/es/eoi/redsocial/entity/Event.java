@@ -37,11 +37,11 @@ public class Event {
 	@Column(name = "eventdate")
 	private Date eventdate;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idUsuario", referencedColumnName = "ID")
 	private User user;
 	
-	@OneToMany(fetch = FetchType.EAGER,mappedBy = "eventAssistance")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "eventAssistance")
     private List<Assistance> registrations;
 
 	public Event() {
