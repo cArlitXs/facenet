@@ -23,3 +23,6 @@ Facenet APP
 * AssistanceService (Kike)
 
 ### Dia 2
+* UserServiceImpl (Kike, Carlos)
+* EventServiceImpl (Javier)
+* 
