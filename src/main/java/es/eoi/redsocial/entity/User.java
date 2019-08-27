@@ -50,16 +50,16 @@ public class User {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private List<Message> mesagges;
 	
-	@OneToMany(mappedBy = "userAssistance")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userAssistance")
     private List<Assistance> assistance;
 	
-	@OneToMany(mappedBy = "messageReaction")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "messageReaction")
     private List<Reaction> reaction;
 	
-	@OneToMany(mappedBy = "originUser")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "originUser")
     private List<Relationship> originsUsers;
 	
-	@OneToMany(mappedBy = "targetUser")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "targetUser")
     private List<Relationship> targetUsers;
 
 	public User() {

@@ -16,7 +16,7 @@ public class EventDto
 
 	private String eventdate;
 
-	private int user;
+	private UserDto user;
 
 	public EventDto()
 	{
