@@ -1,4 +1,4 @@
-package es.eoi.redsocial.controllers;
+package es.eoi.redsocial.controller;
 
 public class MessagesController {
 
