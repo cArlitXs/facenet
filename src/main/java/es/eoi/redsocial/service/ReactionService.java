@@ -2,7 +2,6 @@ package es.eoi.redsocial.service;
 
 import java.util.List;
 
-import es.eoi.redsocial.entity.Message;
 import es.eoi.redsocial.entity.Reaction;
 
 public interface ReactionService {
