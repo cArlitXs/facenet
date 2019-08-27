@@ -27,6 +27,4 @@ public class ReactionServiceImpl implements ReactionService {
 		reactionRepository.deleteById(id);	
 		
 	}
-
-
 }
