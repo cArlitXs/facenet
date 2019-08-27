@@ -1,4 +1,4 @@
-package es.eoi.redsocial.servicies;
+package es.eoi.redsocial.service;
 
 public class MessageServiceImpl implements  MessageService{
 
