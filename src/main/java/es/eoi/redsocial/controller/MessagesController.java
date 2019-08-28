@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import es.eoi.redsocial.dto.MessageDto;
 import es.eoi.redsocial.dto.MessageDtoAutoId;
 import es.eoi.redsocial.entity.Message;
+import es.eoi.redsocial.entity.Relationship;
 import es.eoi.redsocial.entity.User;
+import es.eoi.redsocial.enums.StateRelationship;
 import es.eoi.redsocial.service.MessageService;
 import es.eoi.redsocial.service.ReactionService;
 import es.eoi.redsocial.service.RelationshipService;
@@ -74,17 +76,36 @@ public class MessagesController {
 		return messageListDto;
 	}
 
-//	@GetMapping("/messages/user/{id}/friendPost")
-//	public List<MessageDto> getMessagesByFriends(@PathVariable int id) {
-//		User user = userService.findById(id);
-//		
-//		Relationship relationship = relationshipService.findAll();
-//		
-//		if(id = relationship.getOriginUser()){
-//		}
-//
-//		return null;
-//	}
+	@GetMapping("/messages/user/{id}/friendPost")
+	public List<MessageDto> getMessagesByFriends(@PathVariable int id) {
+		List<Relationship> relationshipList = relationshipService.findAll();
+		List<MessageDto> resMessageList = new ArrayList<MessageDto>();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+
+		for (Relationship relationship : relationshipList) {
+			User oUser = relationship.getOriginUser();
+			if (oUser.getId() == id) {
+				User dUser = relationship.getTargetUser();
+				StateRelationship rel = relationship.getState();
+
+				if (rel.equals(StateRelationship.FRIEND)) {
+					List<Message> dMessage = messageService.findAll();
+					for (Message message : dMessage) {
+						if (message.getUser().equals(dUser)) {
+							MessageDto resMessage = new MessageDto();
+							resMessage.setId(message.getId());
+							resMessage.setContent(message.getContent());
+							resMessage.setPublishdate(format.format(message.getPublishdate()));
+							resMessage.setUser(message.getUser().getId());
+							resMessageList.add(resMessage);
+						}
+					}
+				}
+			}
+		}
+
+		return resMessageList;
+	}
 
 	@PostMapping("/messages")
 	public void setMessage(@RequestBody MessageDtoAutoId messageDtoAutoId) {
