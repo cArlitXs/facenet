@@ -18,12 +18,16 @@ import es.eoi.redsocial.dto.UserDto;
 import es.eoi.redsocial.entity.Event;
 import es.eoi.redsocial.entity.User;
 import es.eoi.redsocial.service.EventService;
+import es.eoi.redsocial.service.UserService;
 
 @RestController
 public class EventsController 
 {
 	@Autowired
 	EventService eventService;
+	
+	@Autowired
+	UserService userService;
 	
 	@GetMapping("/events")
 	public List<EventDto> findAll() throws ParseException 
@@ -82,6 +86,7 @@ public class EventsController
 		SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd"); 
 		
 		userDto = eventDto.getUser();
+		
 		//cliente.setFecha_nac(format.parse(clienteDto.getFecha_nac()));
 		user.setBirtdate(format.parse(userDto.getBirtdate()));
 		user.setStardate(format.parse(userDto.getStardate()));
