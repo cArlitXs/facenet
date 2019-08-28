@@ -10,9 +10,9 @@ public class AssistanceDto
 
 	private int id;
 
-	private int userAssistance;
+	private UserDto userAssistance;
 
-	private int eventAssistance;
+	private EventDto eventAssistance;
 
 	private String state;
 
