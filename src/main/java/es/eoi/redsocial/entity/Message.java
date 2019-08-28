@@ -44,11 +44,10 @@ public class Message {
 	public Message() {
 	}
 
-	public Message(int id, String content, Date publishdate) {
-		super();
-		this.id = id;
+	public Message(String content, Date publishdate, User user) {
 		this.content = content;
 		this.publishdate = publishdate;
+		this.user = user;
 	}
 
 	@Override

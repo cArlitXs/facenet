@@ -31,4 +31,5 @@ Facenet APP
 
 ### Dia 3:
 * Controllers 3 (Javier)
+* MessageController (Carlos)
 * 

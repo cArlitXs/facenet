@@ -1,9 +1,13 @@
 package es.eoi.redsocial.service;
 
 import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import es.eoi.redsocial.entity.Reaction;
 import es.eoi.redsocial.repository.ReactionRepository;
 
+@Service
 public class ReactionServiceImpl implements ReactionService {
 
 	ReactionRepository reactionRepository;
