@@ -108,7 +108,7 @@ public class MessagesController {
 		messageService.remove(id);
 	}
 
-	@PostMapping("/messages/{id}/reactions")
-	public void setReactions() {
-	}
+//	@PostMapping("/messages/{id}/reactions")
+//	public void setReactions() {
+//	}
 }
