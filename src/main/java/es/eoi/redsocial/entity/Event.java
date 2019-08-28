@@ -3,6 +3,7 @@ package es.eoi.redsocial.entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -41,7 +42,7 @@ public class Event {
 	@JoinColumn(name = "idUsuario", referencedColumnName = "ID")
 	private User user;
 	
-	@OneToMany(fetch = FetchType.EAGER,mappedBy = "eventAssistance")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "eventAssistance",cascade = CascadeType.ALL)
     private List<Assistance> registrations;
 
 	public Event() {
