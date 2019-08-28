@@ -28,6 +28,12 @@ public class UserServiceImpl implements UserService {
 	public void save(User user) {
 		this.userRepository.save(user);
 	}
+
+	@Override
+	public List<User> showbyUsernamePass(String username, String pass) {
+		
+		return this.userRepository.findUserByUsernameAndPass(username, pass);
+	}
 	
 	
 //	@Autowired

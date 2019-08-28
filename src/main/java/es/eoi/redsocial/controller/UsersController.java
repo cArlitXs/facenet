@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import es.eoi.redsocial.dto.UserDto;
 import es.eoi.redsocial.dto.UserFullDto;
 import es.eoi.redsocial.entity.User;
+import es.eoi.redsocial.repository.UserRepository;
 import es.eoi.redsocial.service.EventService;
 import es.eoi.redsocial.service.UserService;
 import java.text.ParseException;
@@ -93,17 +94,10 @@ public class UsersController {
 	}
 	
 	@PostMapping("/users/login")
-	public User login(@RequestBody UserDto userDto) throws ParseException {//no funciona correctamente
+	public void login(@RequestBody String username, String pass) throws ParseException {
 		
-		User user2 = new User();
-		SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd"); 
+		userService.showbyUsernamePass(username, pass);
 		
-		user2.setBirtdate(format.parse(userDto.getBirtdate()));
-		user2.setStardate(format.parse(userDto.getStardate()));
-		
-		BeanUtils.copyProperties(user2,userDto);
-		
-		return user2;
 	}
 	
 }
