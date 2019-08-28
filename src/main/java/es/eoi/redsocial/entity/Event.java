@@ -41,7 +41,7 @@ public class Event {
 	@JoinColumn(name = "idUsuario", referencedColumnName = "ID")
 	private User user;
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "eventAssistance")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "eventAssistance")
     private List<Assistance> registrations;
 
 	public Event() {
