@@ -29,17 +29,17 @@ public class UserFullDto
 
 	private String pass;
 	
-	private List<Event> events;
+	private List<EventDto> events;
 	
-	private List<Message> mesagges;
+	private List<MessageDto> mesagges;
 	
-    private List<Assistance> assistance;
+    private List<AssistanceDto> assistance;
     
-    private List<Reaction> reaction;
+    private List<ReactionDto> reaction;
 
-    private List<Relationship> originsUsers;
+    private List<RelationshipDto> originsUsers;
 
-    private List<Relationship> targetUsers;
+    private List<RelationshipDto> targetUsers;
 
 	public UserFullDto()
 	{
