@@ -15,4 +15,8 @@ public class ReactionDto
 
 	private String state;
 
+	public ReactionDto() {
+		super();
+	}
+
 }

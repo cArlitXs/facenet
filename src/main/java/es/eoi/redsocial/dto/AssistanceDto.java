@@ -16,4 +16,13 @@ public class AssistanceDto
 
 	private String state;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 321554c4a7026345ed258478b6fc856949cd009a
+	public AssistanceDto() {
+		
+	}
+
+	
 }

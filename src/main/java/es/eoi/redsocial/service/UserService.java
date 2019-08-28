@@ -11,5 +11,6 @@ public interface UserService {
 	public User findById(int id);
 
 	public void save(User user);
-
+	
+	public List<User> showbyUsernamePass(String username, String pass);
 }

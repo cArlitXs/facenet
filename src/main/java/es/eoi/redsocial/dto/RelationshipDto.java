@@ -16,4 +16,8 @@ public class RelationshipDto
 
 	private String state;
 
+	public RelationshipDto() {
+		super();
+	}
+
 }

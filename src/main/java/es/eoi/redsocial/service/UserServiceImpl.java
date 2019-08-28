@@ -14,19 +14,22 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
 
-	@Override
 	public List<User> findAll() {
 		return this.userRepository.findAll();
 	}
 
-	@Override
 	public User findById(int id) {
 		return this.userRepository.findById(id).get();
 	}
-
-	@Override
+	
 	public void save(User user) {
 		this.userRepository.save(user);
+	}
+
+	@Override
+	public List<User> showbyUsernamePass(String username, String pass) {
+		
+		return this.userRepository.findUserByUsernameAndPass(username, pass);
 	}
 	
 	

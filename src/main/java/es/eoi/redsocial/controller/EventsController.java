@@ -30,7 +30,7 @@ public class EventsController
 	
 	@Autowired
 	UserService userService;
-	
+		
 	@GetMapping("/events")
 	public List<EventDto> findAll() throws ParseException 
 	{
@@ -101,42 +101,64 @@ public class EventsController
 		eventService.save(event);
 	}
 	
-	@PostMapping("/eventss/{id}")
-	public void yesAssistance(@PathVariable int id,@RequestBody UserDto userDto)
-	{
-		Event event = eventService.findById(id);
+	@PostMapping("/events/{id}/yesAssistance")
+	public void yesAssistance(@PathVariable String id,@RequestBody UserDto userDto)
+	{	
+		Event event = eventService.findById(Integer.valueOf(id));
+		User user = userService.findById(userDto.getId());
+		
+		List<Assistance> assistances = event.getRegistrations();
 		Assistance assistance = new Assistance();
-		User user = new User();
-		BeanUtils.copyProperties(userDto,user);
+	
 		
 		assistance.setEventAssistance(event);
 		assistance.setUserAssistance(user);
-		assistance.setState(StateAssist.yesAssistance);
-		
-		List<Assistance> assistances = event.getRegistrations();
+		assistance.setState(StateAssist.yesAssistance);			
 		assistances.add(assistance);
+		
+		//event.setUser(user);
+			
 		event.setRegistrations(assistances);
+		
 		eventService.save(event);
 		
-		/*EventDto eventDto = new EventDto();
+		//Guardar evento en la lista del usuario
+	}
+	
+	@PostMapping("/events/{id}/notAssistance")
+	public void notAssistance(@PathVariable String id,@RequestBody UserDto userDto)
+	{	
+		Event event = eventService.findById(Integer.valueOf(id));
+		User user = userService.findById(userDto.getId());
+		
+		List<Assistance> assistances = event.getRegistrations();
 		Assistance assistance = new Assistance();
-		AssistanceDto assistanceDto = new AssistanceDto();
+	
 		
-		User user = new User();
-		user = userService.findById(userDto.getId());
-		
-		BeanUtils.copyProperties(user,userDto);
-		BeanUtils.copyProperties(event,eventDto);
-		assistanceDto.setEventAssistance(eventDto);
-		assistanceDto.setUserAssistance(userDto);
-		assistanceDto.setState("yesAssistance");
-		
-		BeanUtils.copyProperties(assistanceDto,assistance);
-		
-		List<Assistance> assistances = new ArrayList<Assistance>();
+		assistance.setEventAssistance(event);
+		assistance.setUserAssistance(user);
+		assistance.setState(StateAssist.notAssistance);			
 		assistances.add(assistance);
+		
+		//event.setUser(user);
+			
 		event.setRegistrations(assistances);
 		
-		eventService.save(event);*/
+		eventService.save(event);
+		
+		//Guardar evento en la lista del usuario
+	}
+	
+	@GetMapping("/events/{id}/users/yesAssistance")
+	public List<UserDto> yesAssistanceUsers(@PathVariable String id) 
+	{
+		List<UserDto> usersDto = new ArrayList<UserDto>();
+		UserDto userDto = new UserDto();
+		for (User user : eventService.yesAssistanceUsers(Integer.valueOf(id)))
+		{
+			BeanUtils.copyProperties(user, userDto);
+			usersDto.add(userDto);
+		}
+		return usersDto;
 	}
 }
