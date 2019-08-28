@@ -3,10 +3,12 @@ package es.eoi.redsocial.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import es.eoi.redsocial.entity.Message;
 import es.eoi.redsocial.repository.MessageRepository;
 
+@Service
 public class MessageServiceImpl implements  MessageService{
 	
 	@Autowired
@@ -14,7 +16,6 @@ public class MessageServiceImpl implements  MessageService{
 
 	public void save(Message message) {
 		messageRepository.save(message);
-		
 	}
 
 	public List<Message> findAll() {
