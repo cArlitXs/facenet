@@ -16,13 +16,6 @@ public class AssistanceDto
 
 	private String state;
 
-	public AssistanceDto(int id, int userAssistance, int eventAssistance, String state) {
-		super();
-		this.id = id;
-		this.userAssistance = userAssistance;
-		this.eventAssistance = eventAssistance;
-		this.state = state;
-	}
 
 	public AssistanceDto() {
 		super();
