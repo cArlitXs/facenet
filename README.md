@@ -28,4 +28,7 @@ Facenet APP
 * EventController (Javier)
 * Message (Carlos)
 * Cambiar todos los servicios (Kike)
+
+### Dia 3:
+* Controllers 3 (Javier)
 * 
