@@ -3,6 +3,7 @@ package es.eoi.redsocial.entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -44,22 +45,22 @@ public class User {
 	@Column(name = "pass")
 	private String pass;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user",cascade = CascadeType.ALL)
 	private List<Event> events;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user",cascade = CascadeType.ALL)
 	private List<Message> message;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userAssistance")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userAssistance",cascade = CascadeType.ALL)
     private List<Assistance> assistance;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "messageReaction")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "messageReaction",cascade = CascadeType.ALL)
     private List<Reaction> reaction;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "originUser")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "originUser",cascade = CascadeType.ALL)
     private List<Relationship> originsUsers;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "targetUser")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "targetUser",cascade = CascadeType.ALL)
     private List<Relationship> targetUsers;
 
 	public User() {

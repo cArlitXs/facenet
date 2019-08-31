@@ -14,8 +14,7 @@ public class AssistanceDto {
 	private EventDto eventAssistance;
 
 	private String state;
-
+	
 	public AssistanceDto() {
 	}
-
 }

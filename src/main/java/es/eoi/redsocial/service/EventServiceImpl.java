@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.eoi.redsocial.entity.Event;
-import es.eoi.redsocial.entity.User;
 import es.eoi.redsocial.repository.EventRepository;
 
 @Service
@@ -35,9 +34,6 @@ public class EventServiceImpl implements EventService
 		eventRepository.deleteById(id);
 	}
 	
-	public List<User> yesAssistanceUsers(int id)
-	{
-		return eventRepository.findAllUsersYesAssistance(id);
-	}
+
 
 }
