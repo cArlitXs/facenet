@@ -35,14 +35,15 @@ public class EventsController
 	public List<EventDto> findAll() throws ParseException 
 	{
 		List<EventDto> eventsDto = new ArrayList<EventDto>();
-		EventDto eventDto = new EventDto();
-		UserDto userDto = new UserDto();
+		EventDto eventDto;
+		UserDto userDto;
 		User user = new User();
 		SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd"); 
 		for (Event event : eventService.findAll())
 		{
 			user = event.getUser();
-			
+			eventDto = new EventDto();
+			userDto = new UserDto();
 			BeanUtils.copyProperties(user,userDto);
 			
 			BeanUtils.copyProperties(event,eventDto);
@@ -122,7 +123,6 @@ public class EventsController
 		
 		eventService.save(event);
 		
-		//Guardar evento en la lista del usuario
 	}
 	
 	@PostMapping("/events/{id}/notAssistance")
@@ -145,20 +145,108 @@ public class EventsController
 		event.setRegistrations(assistances);
 		
 		eventService.save(event);
-		
-		//Guardar evento en la lista del usuario
 	}
 	
 	@GetMapping("/events/{id}/users/yesAssistance")
-	public List<UserDto> yesAssistanceUsers(@PathVariable String id) 
+	public List<UserDto> yesAssistanceEvents(@PathVariable String id) 
 	{
-		List<UserDto> usersDto = new ArrayList<UserDto>();
-		UserDto userDto = new UserDto();
-		for (User user : eventService.yesAssistanceUsers(Integer.valueOf(id)))
+		Event event = eventService.findById(Integer.valueOf(id));
+		List<Assistance> assistances = event.getRegistrations();
+		List<UserDto> yesAssistancesEvents = new ArrayList<UserDto>();
+		UserDto userDto;
+		
+		SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
+		
+		for (Assistance assistance : assistances) 
 		{
-			BeanUtils.copyProperties(user, userDto);
-			usersDto.add(userDto);
+			if(assistance.getState().equals(StateAssist.yesAssistance))
+			{
+				userDto = new UserDto();
+				BeanUtils.copyProperties(assistance.getUserAssistance(),userDto);
+				userDto.setBirtdate(format.format(assistance.getUserAssistance().getBirtdate()));
+				userDto.setStardate(format.format(assistance.getUserAssistance().getStardate()));
+				yesAssistancesEvents.add(userDto);
+			}
 		}
-		return usersDto;
+		return yesAssistancesEvents;
+	}
+	
+	@GetMapping("/events/{id}/users/notAssistance")
+	public List<UserDto> notAssistanceEvents(@PathVariable String id) 
+	{
+		Event event = eventService.findById(Integer.valueOf(id));
+		List<Assistance> assistances = event.getRegistrations();
+		List<UserDto> notAssistancesEvents = new ArrayList<UserDto>();
+		UserDto userDto;
+		
+		SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
+		
+		for (Assistance assistance : assistances) 
+		{
+			if(assistance.getState().equals(StateAssist.notAssistance))
+			{
+				userDto = new UserDto();
+				BeanUtils.copyProperties(assistance.getUserAssistance(),userDto);
+				userDto.setBirtdate(format.format(assistance.getUserAssistance().getBirtdate()));
+				userDto.setStardate(format.format(assistance.getUserAssistance().getStardate()));
+				notAssistancesEvents.add(userDto);
+			}
+		}
+		return notAssistancesEvents;
+	}
+	
+	@GetMapping("/events/user/{id}/yesAssistance")
+	public List<EventDto> yesAssistanceUsers(@PathVariable String id)
+	{
+		User user = userService.findById(Integer.valueOf(id));
+		List<Assistance> assistances = user.getAssistance();
+		List<EventDto> yesAssistancesUsers = new ArrayList<EventDto>();
+		EventDto eventDto;
+		UserDto userDto;
+		
+		SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
+		for (Assistance assistance : assistances) 
+		{
+			if(assistance.getState().equals(StateAssist.yesAssistance))
+			{
+				eventDto = new EventDto();
+				userDto = new UserDto();
+				BeanUtils.copyProperties(assistance.getEventAssistance(),eventDto);
+				BeanUtils.copyProperties(assistance.getUserAssistance(),userDto);
+				userDto.setBirtdate(format.format(assistance.getUserAssistance().getBirtdate()));
+				userDto.setStardate(format.format(assistance.getUserAssistance().getStardate()));
+				eventDto.setEventdate(format.format(assistance.getEventAssistance().getEventdate()));
+				eventDto.setUser(userDto);
+				yesAssistancesUsers.add(eventDto);
+			}
+		}
+		return yesAssistancesUsers;
+	}
+	@GetMapping("/events/user/{id}/notAssistance")
+	public List<EventDto> notAssistanceUsers(@PathVariable String id)
+	{
+		User user = userService.findById(Integer.valueOf(id));
+		List<Assistance> assistances = user.getAssistance();
+		List<EventDto> notAssistancesUsers = new ArrayList<EventDto>();
+		EventDto eventDto;
+		UserDto userDto;
+		
+		SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
+		for (Assistance assistance : assistances) 
+		{
+			if(assistance.getState().equals(StateAssist.notAssistance))
+			{
+				eventDto = new EventDto();
+				userDto = new UserDto();
+				BeanUtils.copyProperties(assistance.getEventAssistance(),eventDto);
+				BeanUtils.copyProperties(assistance.getUserAssistance(),userDto);
+				userDto.setBirtdate(format.format(assistance.getUserAssistance().getBirtdate()));
+				userDto.setStardate(format.format(assistance.getUserAssistance().getStardate()));
+				eventDto.setEventdate(format.format(assistance.getEventAssistance().getEventdate()));
+				eventDto.setUser(userDto);
+				notAssistancesUsers.add(eventDto);
+			}
+		}
+		return notAssistancesUsers;
 	}
 }
