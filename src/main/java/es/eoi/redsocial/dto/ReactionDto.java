@@ -11,7 +11,7 @@ public class ReactionDto
 
 	private int userReaction;
 
-	private int messageReaction;
+	private String messageReaction;
 
 	private String state;
 

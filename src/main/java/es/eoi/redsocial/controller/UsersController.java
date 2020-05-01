@@ -1,8 +1,10 @@
 package es.eoi.redsocial.controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,13 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import es.eoi.redsocial.dto.UserDto;
 import es.eoi.redsocial.dto.UserFullDto;
 import es.eoi.redsocial.entity.User;
-import es.eoi.redsocial.repository.UserRepository;
 import es.eoi.redsocial.service.EventService;
 import es.eoi.redsocial.service.UserService;
-import java.text.ParseException;
 
 @RestController
 public class UsersController {

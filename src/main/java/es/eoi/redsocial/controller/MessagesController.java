@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.eoi.redsocial.dto.MessageDto;
 import es.eoi.redsocial.dto.MessageDtoAutoId;
+import es.eoi.redsocial.dto.ReactionDto;
 import es.eoi.redsocial.entity.Message;
+import es.eoi.redsocial.entity.Reaction;
 import es.eoi.redsocial.entity.Relationship;
 import es.eoi.redsocial.entity.User;
 import es.eoi.redsocial.enums.StateRelationship;
@@ -119,10 +121,25 @@ public class MessagesController {
 		messageService.save(message);
 	}
 
-//	@GetMapping("/messages/user/{id}/reactions")
-//	public List<MessageDto> getReactions(@PathVariable int id) {
-//		return null;
-//	}
+	@GetMapping("/messages/{id}/reactions")
+	public List<ReactionDto> getReactions(@PathVariable int id) {
+		Message message = messageService.findById(id);
+		List<Reaction> reactionList = reactionService.findAll();
+		List<ReactionDto> reactionListDto = new ArrayList<ReactionDto>();
+
+		for (Reaction r : reactionList) {
+			if (r.getMessageReaction().equals(message)) {
+				ReactionDto reaction = new ReactionDto();
+				reaction.setId(r.getId());
+				reaction.setMessageReaction(r.getMessageReaction().toString());
+				reaction.setState(r.getState().toString());
+				reaction.setUserReaction(r.getUserReaction().getId());
+				reactionListDto.add(reaction);
+			}
+		}
+
+		return reactionListDto;
+	}
 
 	@DeleteMapping("messages/{id}")
 	public void deleteMessage(@PathVariable int id) {

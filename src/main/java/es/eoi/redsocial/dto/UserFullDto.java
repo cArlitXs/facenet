@@ -2,11 +2,6 @@ package es.eoi.redsocial.dto;
 
 import java.util.List;
 
-import es.eoi.redsocial.entity.Assistance;
-import es.eoi.redsocial.entity.Event;
-import es.eoi.redsocial.entity.Message;
-import es.eoi.redsocial.entity.Reaction;
-import es.eoi.redsocial.entity.Relationship;
 import lombok.Getter;
 import lombok.Setter;
 
